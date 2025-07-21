@@ -18,9 +18,10 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: PS 아카이브
+title: 개발 아카이브
 email: cs601@konkuk.ac.kr
-description: 민수의 PS 아카이브
+description: 민수의 개발 아카이브
+author: 민수
   
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://minsk601.github.io"
