@@ -3,50 +3,36 @@
     padding: 0;
 }
 
-.container {
-    display: flex;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
+.nav_icon {
+    margin: 5px;
+    width: 40px;
+    height: 40px;
 }
 
-.sidebar {
-    width: 200px;
-    background-color: #f4f4f4;
-    border-right: 1px solid #ccc;
-    transition: margin-left 0.5s ease-in-out;
+nav { margin-top: 30px; }
+
+.nav-container {
+    width: 80%;
+    margin: 0 auto;
 }
 
-.sidebar.is-hidden {
-    margin-left: -200px;
-}
+.nav-title { font-size: 40px; transition: font-size 0.4s ease; }
+.nav-title:hover { font-size: 50px; }
 
-.content {
-    flex-grow: 1;
-    padding: 40px;
-    position: relative;
-}
-
-.sidebar-toggle {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.sidebar nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar nav ul li {
-    margin-bottom: 10px;
-}
-
-.sidebar nav ul li a {
-    color: #333;
+.nav-container a {
+    text-align: center;
     text-decoration: none;
-    font-weight: bold;
+    color: black;
+}
+
+.nav-container ul {
+    text-align: center;
+    margin: 10px auto;
+}
+.nav-container li { display: inline-block; }
+
+main {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
 }

@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-	{%- include head.html -%}
+
+	{% include head.html %}
 	
 <body>
-	<div class="container">
-		<aside class="sidebar">
-			{%- include header.html -%}
-			{%- include nav.html -%}
-		</aside>
-		<main class="content">
-			<button class="sidebar-toggle">=</button>
-			{{content}}
-		</main>
-	</div>
-	<script src="/assets/js/main.js"></script>
+
+	{% include nav.html %}
+
+	<main>
+		{{ content }}
+	</main>
+
 </body>
 </html>

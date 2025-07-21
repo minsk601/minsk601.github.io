@@ -1,7 +1,11 @@
-<nav class="site-nav">
-	<ul>
-		<li><a href="/">Home</a></li>
-		<li><a href="/about">About</a></li>
-		<li><a href="/categories">Categories</a></li>
-	</ul>
+<nav class="nav">
+    <div class="nav-container">
+        <a href="{{ site.baseurl }}/">
+            <h2 class="nav-title">{{ site.title }}</h2>
+        </a>
+        <ul>
+            <li><a href="https://github.com/{{ site.github_username }}" target="_blank"><img class="nav_icon" src="{{ 'assets/img/github.png' | relative_url }}"></a></li>
+            <li><a href="https://solved.ac/profile/{{ site.solved_username }}" target="_blank"><img class="nav_icon" src="{{ 'assets/img/solved.png' | relative_url }}"></a></li>
+        </ul>
+    </div>
 </nav>
