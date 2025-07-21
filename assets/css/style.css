@@ -81,8 +81,14 @@ small { color: gray; font-size: 15px; }
     font-weight: bold;
 }
 
-.post {
-    border-top: 1px solid gray;
+article {
+    border-radius: 15px;
+    background-color: #f1f5f9; 
+    padding: 20px;
+}
+
+hr {
+    margin: 20px 0px;
 }
 
 .post > h1 {
@@ -93,10 +99,9 @@ small { color: gray; font-size: 15px; }
 .post-date {
     display: block;
     color: gray;
-    text-align: right;
-    margin-bottom: 50px;
+    text-align: left;
 }
 
-.post-content {
-    text-decoration: none;
+.markdown-body {
+    text-align: left;
 }
