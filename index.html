@@ -15,17 +15,11 @@ paginate: 8
 </div>
 
 <div class="pagination">
-  {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path }}">
-        <img class="page_icon" src="{{ 'assets/img/prev.png' | relative_url }}">
-    </a>
-  {% endif %}
+    {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path }}">< 이전</a>
+    {% endif %}
 
-  <div class="page_txt">{{ paginator.page }}/{{ paginator.total_pages }} 페이지</div>
-
-  {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path }}">
-        <img class="page_icon" src="{{ 'assets/img/next.png' | relative_url }}">
-    </a>
-  {% endif %}
+    {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path }}">다음 ></a>
+    {% endif %}
 </div>
