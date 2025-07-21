@@ -28,6 +28,16 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://minsk601.github.io"
 github_username: minsk601
 
+sass:
+  style: compressed
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: default
+
 # Build settings
 #theme: 
 plugins:
