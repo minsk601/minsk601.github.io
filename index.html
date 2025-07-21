@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Home
-paginate: 5
+paginate: 8
 ---
 
 <div class="contents-list">
@@ -14,15 +14,18 @@ paginate: 5
     </ul>
 </div>
 
-<!-- Pagination Links -->
 <div class="pagination">
   {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path }}">&laquo; Prev</a>
+    <a href="{{ paginator.previous_page_path }}">
+        <img class="page_icon" src="{{ 'assets/img/prev.png' | relative_url }}">
+    </a>
   {% endif %}
 
-  <span>Page {{ paginator.page }}/{{ paginator.total_pages }}</span>
+  <div class="page_txt">{{ paginator.page }}/{{ paginator.total_pages }} 페이지</div>
 
   {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path }}">Next &raquo;</a>
+    <a href="{{ paginator.next_page_path }}">
+        <img class="page_icon" src="{{ 'assets/img/next.png' | relative_url }}">
+    </a>
   {% endif %}
 </div>

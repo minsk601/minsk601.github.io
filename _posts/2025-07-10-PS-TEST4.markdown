@@ -1,9 +1,0 @@
----
-layout: default
-title:  "[C++] PAGE TEST POST 4"
-date:   2025-07-10 23:00:00 +0900
-categories: PS
----
-
-# [문제](https://acmicpc.net/problem/11657)
-
