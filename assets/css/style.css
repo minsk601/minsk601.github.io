@@ -1,6 +1,15 @@
 * {
     margin: 0;
     padding: 0;
+
+    font-family: "Asta Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+body {
+    background-color: #f9fafb;
+    color: #1f2937;
 }
 
 .nav_icon {
@@ -16,8 +25,8 @@ nav { margin-top: 30px; }
     margin: 0 auto;
 }
 
-.nav-title { font-size: 40px; transition: font-size 0.4s ease; }
-.nav-title:hover { font-size: 50px; }
+.nav-title { font-size: 45px; transition: font-size 0.4s ease; }
+.nav-title:hover { font-size: 55px; }
 
 .nav-container a {
     text-align: center;
@@ -36,3 +45,29 @@ main {
     margin: 0 auto;
     text-align: center;
 }
+
+.contents-list ul { list-style: none; }
+
+.contents-list li {
+    display: block;
+    padding: 20px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.contents-list li a {
+    font-size: 25px;
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+    transition: transform 0.6s ease;
+}
+
+.contents-list li a:hover {
+    color: orange;
+    transform: translateX(-8px);
+}
+
+.contents-list li a:hover small { color: orange; }
+
+small { color: gray; font-size: 15px; }

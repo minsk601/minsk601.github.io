@@ -32,7 +32,7 @@ solved_username: ms61
 plugins:
   - jekyll-feed
 
-paginate: 5
+paginate: 8
 paginate_path: "/page:num/"
 plugins:
   - jekyll-paginate

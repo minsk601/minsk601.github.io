@@ -4,14 +4,15 @@ title: Home
 paginate: 5
 ---
 
-<h1>Recent Posts</h1>
-<ul>
-  {% for post in paginator.posts %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a> <small>({{ post.date | date: "%Y-%m-%d" }})</small>
-    </li>
-  {% endfor %}
-</ul>
+<div class="contents-list">
+    <ul>
+    {% for post in paginator.posts %}
+        <li>
+        <a href="{{ post.url }}">{{ post.title }}<small> ({{ post.date | date: "%Y년 %m월 %d일" }})</small></a>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
 
 <!-- Pagination Links -->
 <div class="pagination">
@@ -19,7 +20,7 @@ paginate: 5
     <a href="{{ paginator.previous_page_path }}">&laquo; Prev</a>
   {% endif %}
 
-  <span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  <span>Page {{ paginator.page }}/{{ paginator.total_pages }}</span>
 
   {% if paginator.next_page %}
     <a href="{{ paginator.next_page_path }}">Next &raquo;</a>
