@@ -64,11 +64,12 @@ main {
 }
 
 .contents-list li a:hover {
-    color: orange;
+    color: #3b82f6;
+    font-weight: bold;
     transform: translateX(-8px);
 }
 
-.contents-list li a:hover small { color: orange; }
+.contents-list li a:hover small { color: #3b82f6; }
 
 small { color: gray; font-size: 15px; }
 
@@ -118,7 +119,12 @@ hr {
 }
 
 .post-tags li {
-    margin: 5px;
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 5px;
+    color: white;
+    margin: 5px 10px 5px 0;
+    background-color: #3b82f6;
 }
 
 .utterances { margin-top: 3rem; }
