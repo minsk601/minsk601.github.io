@@ -38,13 +38,14 @@ paginate_path: "/page:num/"
 plugins:
   - jekyll-paginate
 
-highlighter: rouge
-highlight:
-  line_number: true
-
 markdown: kramdown
 kramdown:
   input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: table
+
 
 # Exclude from processing.
 # The following items will not be processed, by default.
