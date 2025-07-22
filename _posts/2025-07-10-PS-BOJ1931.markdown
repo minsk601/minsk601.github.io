@@ -1,0 +1,51 @@
+---
+layout: post
+title:  "[C++] 백준 1931번: 회의실 배정"
+date:   2025-06-30 15:00:00 +0900
+categories: PS
+tags: [Greedy, Sort]
+---
+
+# 문제
+
+[문제: https://acmicpc.net/problem/1931](https://boj.kr/1931)   
+**난이도: 골드 V**
+
+
+# 풀이 방법  
+
+**1.** pair<회의 종료 시간, 회의 시작 시간> 순서로 벡터에 저장   
+**2.** 회의 종료 시간을 기준으로 오름차순 정렬   
+**3.** 정렬 된 벡터에서, 다음 회의의 시작 시점이 현재 회의의 종료 시점보다 크거나 같은 경우 배정   
+**4.** 배정 된 회의의 개수 출력   
+
+# 소스 코드
+
+```cpp
+#include <iostream>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+int main() {
+    int n;
+    vector<pair<int, int>> v;
+    vector<pair<int, int>> ans;
+    cin >> n;
+    for(int i = 0; i < n; i++) {
+        int a, b;
+        cin >> a >> b;
+        v.push_back(make_pair(b, a));  // {종료 시간, 시작 시간} 순으로 저장
+    }
+
+    sort(v.begin(), v.end());
+    ans.push_back(v[0]);
+    for(int i = 1; i < v.size(); i++) {
+        if(v[i].second >= ans[ans.size() - 1].first) {
+            ans.push_back(v[i]);
+        }
+    }
+    cout << ans.size();
+    return 0;
+}
+```

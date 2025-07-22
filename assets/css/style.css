@@ -112,6 +112,11 @@ hr {
     color: black;
 }
 
+.markdown-body p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
 .post-tags {
     margin-top: 10px;
     list-style: none;

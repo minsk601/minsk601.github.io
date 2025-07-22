@@ -8,25 +8,18 @@ tags: [Bellman-Ford, Shortest Distance]
 
 # 문제
 
-<br>
 [문제: https://acmicpc.net/problem/11657](https://boj.kr/11657)   
 **난이도: 골드 IV**
 
-<br>
-
 # 풀이 방법  
 
-<br> 
 **1.** vector<pair<int, int>> graph[] 선언을 통해 버스 노선의 정보 저장 (예: graph[출발 도시].push(pair<도착 도시, 시간>))   
 **2.** 1번 도시를 기준으로 벨만-포드 알고리즘 수행   
 **3.** 음수 사이클이 존재하는 경우, 첫째 줄에 -1 출력   
 **4.** 음수 사이클이 존재하지 않는다면, 1번 도시부터 N번 도시까지의 최단 경로 출력 
 
-<br>
-
 # 소스 코드
 
-<br>
 ```cpp
 #include <iostream>
 #include <vector>

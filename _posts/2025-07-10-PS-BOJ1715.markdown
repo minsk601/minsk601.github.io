@@ -8,25 +8,18 @@ tags: [Priority Queue, Greedy]
 
 # 문제
 
-<br>
 [문제: https://acmicpc.net/problem/1715](https://boj.kr/1715)   
 **난이도: 골드 IV**
 
-<br>
-
 # 풀이 방법  
 
-<br>
 **1.** 입력 받은 숫자 카드들을 오름차순으로 정렬 (작은 카드들을 묶는 것이 효율적)   
 **2.** 우선순위 큐의 가장 위 카드 두 장을 꺼내 합치고, 그 값을 변수에 더한다   
 **3.** 우선순위 큐의 크기가 1이 될 때까지 반복   
 **4.** 묶음의 합을 저장한 변수 출력   
 
-<br>
-
 # 소스 코드
 
-<br>
 ```cpp
 #include <iostream>
 #include <queue>

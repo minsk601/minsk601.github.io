@@ -8,25 +8,19 @@ tags: [Bellman-Ford, Shortest Distance]
 
 # 문제
 
-<br>
 [문제: https://acmicpc.net/problem/1865](https://boj.kr/1865)   
 **난이도: 골드 III**
 
-<br>
 
 # 풀이 방법  
 
-<br> 
 **1.** vector<pair<int, int>> road[] 선언을 통해 도로의 정보 저장 (도로의 경우 양방향 저장)   
 **2.** 웜홀의 경우 방향이 존재하며, 음수 값으로 road 에 저장   
 **3.** 벨만-포드 알고리즘을 수행하나, 출발 기준점이 존재하지 않음    
 **4.** 벨만-포드 알고리즘 수행 후, 음수 사이클이 존재한다면 YES, 존재하지 않는다면 NO 출력   
 
-<br>
-
 # 소스 코드
 
-<br>
 ```cpp
 #include <iostream>
 #include <vector>
