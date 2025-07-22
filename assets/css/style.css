@@ -105,3 +105,8 @@ hr {
 .markdown-body {
     text-align: left;
 }
+
+.markdown-body a {
+    text-decoration: none;
+    color: black;
+}

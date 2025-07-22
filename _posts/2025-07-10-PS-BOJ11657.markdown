@@ -5,5 +5,78 @@ date:   2025-07-10 23:00:00 +0900
 categories: PS
 ---
 
-# [문제](https://acmicpc.net/problem/11657)
+# 문제
 
+<br>
+[문제: https://acmicpc.net/problem/11657](https://boj.kr/11657)   
+**난이도: 골드 IV**
+
+<br>
+
+# 풀이 방법  
+<br> 
+**1.** vector<pair<int, int>> graph[] 선언을 통해 버스 노선의 정보 저장 (예: graph[출발 도시].push(pair<도착 도시, 시간>))   
+**2.** 1번 도시를 기준으로 벨만-포드 알고리즘 수행   
+**3.** 음수 사이클이 존재하는 경우, 첫째 줄에 -1 출력   
+**4.** 음수 사이클이 존재하지 않는다면, 1번 도시부터 N번 도시까지의 최단 경로 출력 
+
+<br>
+
+# 소스 코드
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <climits>
+#include <algorithm>
+
+using namespace std;
+
+vector<long long> bellman(int start, int v, vector<pair<int, int>> graph[]) {
+    vector<long long> dist(v, INT_MAX);
+    dist[start] = 0;
+    bool updated;
+
+    for(int i = 1; i < v; i++) {
+        updated = false;
+        for(int j = 1; j < v; j++) {
+            for(int k = 0; k < graph[j].size(); k++) {
+                int next = graph[j][k].first;
+                int cost = graph[j][k].second;
+                if(dist[j] != INT_MAX && dist[next] > dist[j] + cost) {
+                    dist[next] = dist[j] + cost;
+                    updated = true;
+                }
+            }
+        }
+        if(!updated) break; // V 번째 순회에서도 업데이트에 성공했다면, 음수 사이클의 존재
+    }
+    if(updated) dist.clear();
+    return dist;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, m;  // 도시의 개수 n, 버스 노선의 개수 m
+    cin >> n >> m;
+    vector<pair<int, int>> graph[501];  // 버스 노선의 정보 저장 벡터
+    for(int i = 0; i < m; i++) {
+        int a, b, c;
+        cin >> a >> b >> c;
+        graph[a].push_back({b, c});    // a -> {b, cost}
+    }
+
+    vector<long long> dist = bellman(1, n + 1, graph);
+
+    if(dist.size() == 0) cout << -1;
+    else {
+        for(int i = 2; i < dist.size(); i++) {
+            if(dist[i] == INT_MAX) cout << -1 << "\n";
+            else cout << dist[i] << "\n";
+        }
+    }
+    return 0;
+}
+```
