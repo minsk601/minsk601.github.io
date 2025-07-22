@@ -111,6 +111,16 @@ hr {
     color: black;
 }
 
+.post-tags {
+    margin-top: 10px;
+    list-style: none;
+    display: flex;
+}
+
+.post-tags li {
+    margin: 5px;
+}
+
 .utterances { margin-top: 3rem; }
 .utterances-frame {
   border-radius: 10px;
