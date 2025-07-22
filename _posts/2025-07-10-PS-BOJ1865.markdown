@@ -1,0 +1,90 @@
+---
+layout: post
+title:  "[C++] 백준 1865번: 웜홀"
+date:   2025-07-10 23:00:00 +0900
+categories: PS
+tags: [Bellman-Ford, Shortest Distance]
+---
+
+# 문제
+
+<br>
+[문제: https://acmicpc.net/problem/1865](https://boj.kr/1865)   
+**난이도: 골드 III**
+
+<br>
+
+# 풀이 방법  
+
+<br> 
+**1.** vector<pair<int, int>> road[] 선언을 통해 도로의 정보 저장 (도로의 경우 양방향 저장)   
+**2.** 웜홀의 경우 방향이 존재하며, 음수 값으로 road 에 저장   
+**3.** 벨만-포드 알고리즘을 수행하나, 출발 기준점이 존재하지 않음    
+**4.** 벨만-포드 알고리즘 수행 후, 음수 사이클이 존재한다면 YES, 존재하지 않는다면 NO 출력   
+
+<br>
+
+# 소스 코드
+
+<br>
+```cpp
+#include <iostream>
+#include <vector>
+#include <climits>
+#include <algorithm>
+
+using namespace std;
+
+vector<long long> bellman(int start, int v, vector<pair<int, int>> road[]) {
+    vector<long long> time(v, INT_MAX);
+    time[start] = 0;
+    bool updated;
+    
+    for(int i = 1; i < v; i++) {
+        updated = false;
+        for(int j = 1; j < v; j++) {
+            for(int k = 0; k < road[j].size(); k++) {
+                int next = road[j][k].first;
+                int ntime = road[j][k].second;
+                if(time[next] > time[j] + ntime) {
+                    time[next] = time[j] + ntime;
+                    updated = true;
+                }
+            }
+        }
+        if(!updated) break;
+    }
+    if(updated) time.clear();
+    return time;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int tc;
+    cin >> tc;
+    while(tc--) {
+        vector<pair<int, int>> road[501];
+        int n, m, w;
+        cin >> n >> m >> w;
+        for(int tmp = 0; tmp < m; tmp++) {
+            int s, e, t;
+            cin >> s >> e >> t;
+            road[s].push_back({e, t});  // s -> {e, t (time needed)} - 도로는 양방향
+            road[e].push_back({s, t});  // e -> {s, t (time needed)} 
+        }
+
+        for(int tmp = 0; tmp < w; tmp++) {
+            int s, e, t;
+            cin >> s >> e >> t;
+            road[s].push_back({e, -t});  // s -> {e, t (time decreasing)} - 웜홀은 방향
+        }
+
+        vector<long long> time = bellman(1, n + 1, road);
+        time.size() == 0 ? cout << "YES\n" : cout << "NO\n";
+    }
+
+    return 0;
+}
+```
