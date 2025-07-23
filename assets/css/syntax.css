@@ -95,6 +95,8 @@
   padding-right: 10px;
 }
 
+.language-cpp { margin-top: 20px; }
+
 .highlight {
   padding: 5px;
   border-radius: 10px;
