@@ -154,4 +154,9 @@ hr {
     .contents-list li {
         width: 90%;
     }
+
+    .highlight {
+        font-size: 0.8rem;
+        padding: 0.8rem;
+    }
 }
