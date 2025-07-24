@@ -8,8 +8,7 @@ paginate: 8
     <ul>
     {% for post in paginator.posts %}
         <li>
-            <a href="{{ post.url }}">{{ post.title }} <small> ({{ post.date | date: "%Y년 %m월 %d일" }}) 
-                [ {% for tag in post.tags %}{{ tag }}{% unless forloop.last %}, {% endunless %} {% endfor %}]</small></a>
+            <a href="{{ post.url }}">{{ post.title }}<br> <small> ({{ post.date | date: "%Y년 %m월 %d일" }})</small></a>
         </li>
     {% endfor %}
     </ul>
