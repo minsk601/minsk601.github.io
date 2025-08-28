@@ -1,0 +1,74 @@
+---
+layout: post
+title:  "[C++] 백준 6118번: 숨바꼭질"
+date:   2025-08-28 17:00:00 +0900
+categories: PS
+tags: [Graph, BFS]
+---
+
+# 문제
+
+[문제: https://acmicpc.net/problem/6118](https://boj.kr/6118)   
+**난이도: 실버 I**
+
+# 풀이 방법  
+
+**1.** vector<vector<int>> arr의 선언을 통해, 양방향 그래프를 입력받는다.    
+**2.** 1번 노드를 기준으로 BFS를 수행하고, 각 노드까지의 거리를 vector<int> dis에 저장   
+**3.** BFS가 종료된 후, 가장 먼 거리에 위치하는 노드와 그 개수를 찾아 벡터에 저장   
+**4.** 가장 먼 거리에 위치하는 노드의 최소값, 거리, 같은 거리에 위치한 노드의 개수 출력    
+
+# 소스 코드
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    queue<int> q;
+
+    int n, m;
+    cin >> n >> m;
+
+    vector<int> vis(n + 1);
+    vector<int> dis(n + 1);
+    vector<vector<int>> arr(n + 1);
+    for(int i = 0; i < m; i++) {
+        int a, b;
+        cin >> a >> b;
+        arr[a].push_back(b);
+        arr[b].push_back(a);
+    }
+
+    dis[1] = 0;
+    vis[1] = true;
+    q.push(1);
+    while(!q.empty()) {
+        int cur_node = q.front();
+        q.pop();
+        for(int i = 0; i < arr[cur_node].size(); i++) {
+            if(vis[arr[cur_node][i]]) continue;
+            dis[arr[cur_node][i]] = dis[cur_node] + 1;
+            vis[arr[cur_node][i]] = true;
+            q.push(arr[cur_node][i]);
+        }
+    }
+
+    int max_dist = *max_element(dis.begin() + 1, dis.end());
+    
+    vector<int> farthest;
+    for(int i = 1; i <= n; i++) {
+        if(dis[i] == max_dist) farthest.push_back(i);
+    }
+
+    cout << *min_element(farthest.begin(), farthest.end()) << " " << max_dist << " " << farthest.size() << "\n";
+    return 0;
+}
+```
