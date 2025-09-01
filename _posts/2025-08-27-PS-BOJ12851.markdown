@@ -1,0 +1,79 @@
+---
+layout: post
+title:  "[C++] 백준 12851번: 숨바꼭질 2"
+date:   2025-08-27 15:00:00 +세0900
+categories: PS
+tags: [Graph, BFS]
+---
+
+# 문제
+
+[문제: https://acmicpc.net/problem/12851](https://boj.kr/12851)   
+**난이도: 골드 IV**
+
+# 풀이 방법  
+
+**>** BFS 알고리즘을 이용하여 문제를 해결한다.  
+**>** 수빈이의 위치와 동생의 위치를 비교  
+**>** 위치가 다른 경우 수빈이의 위치를 이동시킨 후 큐에 삽입  
+**>** 큐가 빌 때까지 반복  
+
+# 소스 코드
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <climits>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int n, k;
+    queue<pair<int, int>> q;
+    vector<int> dis(100001, INT_MAX);
+    cin >> n >> k;
+
+    q.push({n, 0});
+    dis[n] = 0;
+    if(n == k) {
+        cout << 0 << "\n" << 1 << "\n";
+        return 0;
+    }
+    while(true) {
+        int q_size = q.size();
+        int a = 0;
+        while(q_size--) {
+            int cur_node = q.front().first;
+            int cur_dist = q.front().second;
+            q.pop();
+
+            if(cur_node - 1 == k) a++;
+            if(cur_node + 1 == k) a++;
+            if(cur_node * 2 == k) a++;
+
+            if(cur_node - 1 >= 0 && cur_dist + 1 <= dis[cur_node - 1]) {
+                dis[cur_node - 1] = cur_dist + 1;
+                q.push({cur_node - 1, cur_dist + 1});
+            }
+            if(cur_node + 1 <= 100000 && cur_dist + 1 <= dis[cur_node + 1]) {
+                dis[cur_node + 1] = cur_dist + 1;
+                q.push({cur_node + 1, cur_dist + 1});
+            }
+            if(cur_node * 2 <= 100000 && cur_dist + 1 <= dis[cur_node * 2]) {
+                dis[cur_node * 2] = cur_dist + 1;
+                q.push({cur_node * 2, cur_dist + 1});
+            }
+        }
+        if(a) {
+            cout << q.front().second << "\n";
+            cout << a << "\n";
+            break;
+        }
+    }
+    return 0;
+}
+```
