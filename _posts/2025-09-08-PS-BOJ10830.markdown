@@ -1,0 +1,83 @@
+---
+layout: post
+title:  "[C++] 백준 10830: 행렬 제곱"
+date:   2025-09-08 16:00:00 +0900
+categories: PS
+tags: [Divide and Conquer, Math]
+---
+
+# 문제
+
+[문제: https://acmicpc.net/problem/10830](https://boj.kr/10830)   
+**난이도: 골드 IV**
+
+# 풀이 방법  
+
+지수 법칙과 모듈러 성질을 이용하여 분할 정복을 통해 해결하였다.   
+
+모듈러 성질   
+(a * b) % C = (a % C * b % C) % C   
+
+# 소스 코드
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+long long n, b;
+long long matrix[5][5];
+long long ans[5][5];
+
+void matrix_ope(long long a[5][5], long long b[5][5]) {
+    long long tmp[5][5];
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            tmp[i][j] = 0;
+            for(int k = 0; k < n; k++) {
+                tmp[i][j] += (a[i][k] * b[k][j]);
+            }
+            tmp[i][j] %= 1000;
+        }
+    }
+
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            a[i][j] = tmp[i][j];
+        }
+    }
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    cin >> n >> b;
+
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            cin >> matrix[i][j];
+        }
+        ans[i][i] = 1;
+    }
+
+    while(b > 0) {
+        if(b % 2 == 1) {
+            matrix_ope(ans, matrix);
+        }
+        matrix_ope(matrix, matrix);
+        b /= 2;
+    }
+
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            cout << ans[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+```
