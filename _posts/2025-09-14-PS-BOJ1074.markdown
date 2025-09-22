@@ -1,0 +1,60 @@
+---
+layout: post
+title:  "[C++] 백준 1074: Z"
+date:   2025-09-14 16:00:00 +0900
+categories: PS
+tags: [Divide and Conquer, Recursion]
+---
+
+# 문제
+
+[문제: https://acmicpc.net/problem/1074](https://boj.kr/1074)   
+**난이도: 골드 V**
+
+# 풀이 방법  
+
+분할 정복과 재귀를 이용하여 해결하는 문제이다.   
+주어진 크기의 배열을 Z모양으로 탐색한다.   
+
+이 문제의 경우, 모든 사분면을 탐색하는 경우, 시간 초과가 발생할 수 있다.   
+주어진 r, c의 값을 통해 사분면을 검사하며 재귀 함수 호출을 줄이는 게 관건이다.   
+
+# 소스 코드
+
+```cpp
+#include <iostream>
+#include <cmath>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int r, c;
+int ans = 0;
+
+void solve(int x, int y, int size) {
+    int tmp = pow(2, size);
+    if(c == x && r == y) {
+        cout << ans << "\n";
+        return;
+    } else if(c < x + tmp && r < y + tmp && c >= x && r >= y) {
+        solve(x, y, size - 1);
+        solve(x + pow(2, size - 1), y, size - 1);
+        solve(x, y + pow(2, size - 1), size - 1);
+        solve(x + pow(2, size - 1), y + pow(2, size - 1), size - 1);
+    } else {
+        ans += (tmp * tmp);
+    }
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n;
+    cin >> n >> r >> c;
+
+    solve(0, 0, n);
+    return 0;
+}
+```
