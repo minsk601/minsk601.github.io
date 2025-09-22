@@ -1,0 +1,61 @@
+---
+layout: post
+title:  "[C++] 백준 1992번: 쿼드트리"
+date:   2025-09-02 16:00:00 +0900
+categories: PS
+tags: [Divide and Conquer, Recursion]
+---
+
+# 문제
+
+[문제: https://acmicpc.net/problem/1992](https://boj.kr/1992)   
+**난이도: 실버 I**
+
+# 풀이 방법  
+
+분할 정복으로 해결하는 문제이다.   
+N*N 크기의 배열을 탐색하며, 가장 왼쪽 상단의 값과 다른 값이 나오는 순간   
+(N/2) * (N/2) 크기로 4등분 하여, 재귀 함수를 호출하는 형식으로 풀었다.    
+
+# 소스 코드
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+string s;
+int n;
+int video[64][64];
+
+void solve(int x, int y, int size) {
+    for(int i = x; i < x + size; i++) {
+        for(int j = y; j < y + size; j++) {
+            if(video[i][j] != video[x][y]) {
+                cout << "(";
+                solve(x, y, size / 2);
+                solve(x,y + size / 2, size / 2);
+                solve(x + size / 2, y, size / 2);
+                solve(x + size / 2, y + size / 2, size / 2 );
+                cout << ")";
+                return;
+            }
+        }
+    }
+    cout << video[x][y];
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cin >> n;
+    for(int i = 0; i < n; i++) {
+        cin >> s;
+        for(int j = 0; j < n; j++) video[i][j] = s[j] - '0';
+    }
+    solve(0, 0, n);
+    return 0;
+}
+```
