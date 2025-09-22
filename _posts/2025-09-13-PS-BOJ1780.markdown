@@ -1,0 +1,72 @@
+---
+layout: post
+title:  "[C++] 백준 1780: 종이의 개수"
+date:   2025-09-13 16:00:00 +0900
+categories: PS
+tags: [Divide and Conquer, Recursion]
+---
+
+# 문제
+
+[문제: https://acmicpc.net/problem/1780](https://boj.kr/1780)   
+**난이도: 실버 II**
+
+# 풀이 방법  
+
+분할 정복과 재귀를 이용하여 해결하는 문제이다.   
+지정된 크기 안의 숫자들이 모두 같다면, 분할하지 않고 넘어간다.   
+지정된 크기 내의 배열에서, 가장 왼쪽 상단의 값과 다른 값이 나오는 순간   
+다시 종이를 9분할 하여 재귀 함수를 호출한다.   
+
+# 소스 코드
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int arr[2187][2187];
+int counts[3] = {0, };
+
+void solve(int x, int y, int size) {
+    for(int i = x; i < x + size; i++) {
+        for(int j = y; j < y + size; j++) {
+            if(arr[i][j] != arr[x][y]) {
+                solve(x, y, size / 3);
+                solve(x + size / 3, y, size / 3);
+                solve(x + (size / 3) * 2, y, size / 3);
+
+                solve(x, y + size / 3, size / 3);
+                solve(x + size / 3, y + size / 3, size / 3);
+                solve(x + (size / 3) * 2, y + size / 3, size / 3);
+
+                solve(x, y + (size / 3) * 2, size / 3);
+                solve(x + size / 3, y + (size / 3) * 2, size / 3);
+                solve(x + (size / 3) * 2, y + (size / 3) * 2, size / 3);
+                return;
+            }
+        }
+    }
+    counts[arr[x][y] + 1]++;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    
+    int n;
+    cin >> n;
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++)
+            cin >> arr[i][j];
+    }
+
+    solve(0, 0, n);
+    
+    cout << counts[0] << "\n" << counts[1] << "\n" << counts[2] << "\n";
+    return 0;
+}
+```
